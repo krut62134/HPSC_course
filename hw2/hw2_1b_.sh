@@ -8,9 +8,13 @@ echo -n > "$output_file"
 
 for run in $(seq 1 $total_runs)
 do
-    while [[ 1 -le 10 ]]
+    i=1
+    max_i=10  # Set the maximum value of i
+
+    while [[ $i -le $max_i ]]
     do
-        ./hw2_1a $((10**i)) >> "$output_file"
+        time ./hw2_1a $((10**i)) >> "$output_file"
         ((i = i + 1))
     done
 done
+

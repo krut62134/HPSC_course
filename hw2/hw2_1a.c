@@ -18,8 +18,8 @@ int main(int argc, char *argv[]) {
     unsigned long long points_inside_circle = 0;
 
     for (unsigned long long i = 0; i < N; i++) {
-        double x1 = (double)rand() / RAND_MAX;
-        double x2 = (double)rand() / RAND_MAX;
+        double x1 = 2.0 * ((double)rand() / (double)RAND_MAX) - 1.0;
+        double x2 = 2.0 * ((double)rand() / (double)RAND_MAX) - 1.0;
 
         if (x1 * x1 + x2 * x2 <= 1.0) {
             points_inside_circle++;
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 
     double error = fabs(PI - pi_approx);
 
-    printf("%llu %e\n", N, error);
+    printf("%llu %e\n", N, pi_approx);
 
     return 0;
 }
