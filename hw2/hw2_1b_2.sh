@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Number of times to execute the script
-total_executions=500
+total_executions=750
 
 # Output file to store the data
 output_file="hw2_1b_parallel.dat"

@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 
     double error = fabs(PI - pi_approx);
 
-    printf("%llu %e\n", N, pi_approx);
+    printf("%llu %e\n", N, error);
 
     return 0;
 }

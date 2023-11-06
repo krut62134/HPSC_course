@@ -1,7 +1,7 @@
 #!/bin/bash
 
 i=2
-max_i=8  # Set the maximum value of i
+max_i=10  # Set the maximum value of i
 
 while [[ $i -le $max_i ]]
 do
