@@ -4,7 +4,7 @@ i=2
 max_i=10  # Set the maximum value of i
 
 # Create a file to store the data
-output_file="timing.dat"
+output_file="timing_anvil.dat"
 echo -n > "$output_file"
 
 while [[ $i -le $max_i ]]
