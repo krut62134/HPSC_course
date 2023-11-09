@@ -3,9 +3,9 @@
 #include <math.h>
 
 int main() {
-    int N = 1000000;
+    int N = 128;
     float b[N];
-    float a[N];  // Move the array declaration outside the parallel region
+    float a[N];  //Declaration of 'a' outside the parallel region so that it's in the scope of the second loop
 
     // Serial portion of the code -- fill up b with integers
     for (int j = 0; j < N; j++) {
