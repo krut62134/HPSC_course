@@ -18,6 +18,8 @@ double rosenbrock_function(double *x, int dim) {
 }
 
 int main(int argc, char **argv) {
+    double start_total_time = omp_get_wtime(); // Start timing for the entire program
+
     if (argc != 3) {
         printf("Usage: %s <number_of_threads> <N>\n", argv[0]);
         return 1;
@@ -33,16 +35,14 @@ int main(int argc, char **argv) {
 
     srand(time(NULL));
 
-    printf("Number of threads requested: %d\n", num_threads);
-    printf("N = %lli\n", N);
+    // Arrays to store data
+    double data[4];  // Thread count, N, Integral, Total Time
 
     double x[dim];
     double integral = 0;
 
     omp_set_num_threads(num_threads);
     double local_integral = 0.0;
-
-    double start_time = omp_get_wtime(); // Start timing
 
     #pragma omp parallel private(x) reduction(+:local_integral)
     {
@@ -59,13 +59,17 @@ int main(int argc, char **argv) {
         }
     }
 
-    double end_time = omp_get_wtime(); // Stop timing
-
     integral = (V / N) * local_integral;
-    printf("Number of threads used: %d\n", omp_get_max_threads());
-    printf("integral = %1.5e\n", integral);
-    printf("Time taken: %f seconds\n", end_time - start_time);
 
+    // Set values in the data array
+    data[0] = num_threads;
+    data[1] = N;
+    data[2] = integral;
+    double end_total_time = omp_get_wtime(); // Stop timing for the entire program
+    data[3] = end_total_time - start_total_time;
+
+    // Print the data in array form
+    printf("%1.0f %lli %1.5e %f\n", data[0], (long long int)data[1], data[2], data[3]);
 
     return 0;
 }
