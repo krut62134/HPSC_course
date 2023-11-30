@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
         double f = 1. / (1. +x*x);
         integral = integral + 0.5*dx*f;
 
-        #pragma omp parallel for private(x,f) shared(integral)
+        #pragma omp parallel for private(x,f)
         for (int i=1; i<N; ++i) {
                 x = -1. + dx*i;
                 f = 1. / (1. + x*x);

@@ -1,0 +1,2 @@
+- Judging from the results I obtained for all three of my parallel codes, it appears that, for my PC, running this code in serial is much faster when N is equal to 10^9.
+- Upon comparing the three codes, it becomes evident that the reduction method is the fastest among them, while the critical method proves to be the slowest.

@@ -19,9 +19,9 @@ int main(int argc, char **argv) {
         for (int i=1; i<N; ++i) {
                 x = -1. + dx*i;
                 f = 1. / (1. + x*x);
-                #pragma omp critical 
                 integral = integral + dx*f;
-        }
+                printf("thread %i, x=%f, f=%f\n",omp_get_thread_num(),x,f);
+	}
 
         const double pi = 3.141592653589793;
         double absolute_error = fabs(integral - pi / 2.);
