@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <omp.h>
 
 int is_inside_circle(double x, double y) {
     return x * x + y * y <= 1.0;

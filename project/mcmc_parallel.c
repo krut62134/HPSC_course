@@ -56,27 +56,27 @@ int main(int argc, char *argv[]) {
     omp_set_num_threads(num_threads);
 
     // Print the number of threads
-    #pragma omp parallel
-    {
-        #pragma omp single
-        printf("Number of threads: %d\n", omp_get_num_threads());
-    }
+//    #pragma omp parallel
+//    {
+//        #pragma omp single
+//       printf("Number of threads: %d\n", omp_get_num_threads());
+//    }
 
     double pi_estimate = estimate_pi_mcmc(N);
 
-    printf("Estimated value of pi using 2D MCMC: %.20f\n", pi_estimate);
+//    printf("Estimated value of pi using 2D MCMC: %.20f\n", pi_estimate);
 
     // Known value of pi up to 20 decimal places
     const double known_pi = 3.14159265358979323846;
 
     // Calculate and print the error estimate
     double error_estimate = fabs(known_pi - pi_estimate);
-    printf("Error estimate: %.20f\n", error_estimate);
+//    printf("Error estimate: %.20f\n", error_estimate);
 
     double end_total_time = omp_get_wtime(); // End timing for the entire program
 
     // Print the total time
-    printf("Total time taken: %f seconds\n", end_total_time - start_total_time);
+//    printf("Total time taken: %f seconds\n", end_total_time - start_total_time);
     
     printf("%d %lli %.20f %.20f %f\n", num_threads, N, pi_estimate,  error_estimate, end_total_time - start_total_time);
 
