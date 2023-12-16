@@ -9,7 +9,7 @@ int is_inside_circle(double x, double y) {
 }
 
 double estimate_pi_mcmc(long long int N) {
-    int inside_circle_count = 0;
+    long long int inside_circle_count = 0;
 
     // Use a different seed for each thread
     unsigned int seed = (unsigned int)time(NULL) + omp_get_thread_num();
@@ -31,21 +31,29 @@ double estimate_pi_mcmc(long long int N) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Usage: %s <N>\n", argv[0]);
+    if (argc != 3) {
+        printf("Usage: %s <N> <num_threads>\n", argv[0]);
         return 1;
     }
 
-    long long int N = atoll(argv[1]);
+    double start_total_time = omp_get_wtime(); // Start timing for the entire program
+
+    long long int N = strtoull(argv[1], NULL, 10);
     if (N <= 0) {
         printf("Please enter a valid positive integer for the value of N.\n");
         return 1;
     }
 
+    int num_threads = atoi(argv[2]);
+    if (num_threads <= 0) {
+        printf("Please enter a valid positive integer for the number of threads.\n");
+        return 1;
+    }
+
     srand((unsigned int)time(NULL));
 
-    // Set the number of threads to 15
-    omp_set_num_threads(15);
+    // Set the number of threads
+    omp_set_num_threads(num_threads);
 
     // Print the number of threads
     #pragma omp parallel
@@ -55,6 +63,7 @@ int main(int argc, char *argv[]) {
     }
 
     double pi_estimate = estimate_pi_mcmc(N);
+
     printf("Estimated value of pi using 2D MCMC: %.20f\n", pi_estimate);
 
     // Known value of pi up to 20 decimal places
@@ -63,6 +72,13 @@ int main(int argc, char *argv[]) {
     // Calculate and print the error estimate
     double error_estimate = fabs(known_pi - pi_estimate);
     printf("Error estimate: %.20f\n", error_estimate);
+
+    double end_total_time = omp_get_wtime(); // End timing for the entire program
+
+    // Print the total time
+    printf("Total time taken: %f seconds\n", end_total_time - start_total_time);
+    
+    printf("%d %lli %.20f %.20f %f\n", num_threads, N, pi_estimate,  error_estimate, end_total_time - start_total_time);
 
     return 0;
 }
