@@ -1,0 +1,32 @@
+#!/bin/sh
+#SBATCH -J trap_omp           # Job name
+#SBATCH -o trap_omp.log       # Name of stdout output file
+#SBATCH -e trap_omp.log       # Name of stderr error file
+#SBATCH -N 1                # Total # of nodes (must be 1 for shared memory jobs)
+#SBATCH -n 128              # Total # of cores to use
+#SBATCH -t 00:01:00         # Run time (hh:mm:ss)
+#SBATCH -A SEE230009        # Name of class allocation
+
+echo "Running Job $SLURM_JOB_ID"
+echo $USER | xxd -p
+echo ""
+
+## DO NOT EDIT ABOVE THIS LINE ##
+## DO NOT EDIT ABOVE THIS LINE ##
+## DO NOT EDIT ABOVE THIS LINE ##
+
+## NOTE: Below code assumes you have already compiled your trap_omp.c code to produce an executable called trap_omp
+## If you have not done so, please do so before running this job script.
+
+# Now we run the executable with different number of threads and time it for a
+# fixed value of N.
+N=100000000
+
+TIMEFORMAT=%R
+for k in 1 2 5 10 100
+do
+    echo "Running trap_omp with $k threads"
+    # If done correctly, this should print the integral estimate and the time
+    # taken for k threads to trap_omp.log
+    time ./trap_omp $N $k
+done

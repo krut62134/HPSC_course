@@ -1,0 +1,18 @@
+Running Job 4151344
+782d6b706174656c350a
+
+Running trap_omp with 1 threads
+I_approx: -0.0000000000
+0.749
+Running trap_omp with 2 threads
+I_approx: -0.0000000000
+0.528
+Running trap_omp with 5 threads
+I_approx: -0.0000000000
+0.438
+Running trap_omp with 10 threads
+I_approx: -0.0000000000
+0.411
+Running trap_omp with 100 threads
+I_approx: -0.0000000000
+0.388

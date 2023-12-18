@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     double amount = principal * pow(1 + interest_rate, years);
 
-    printf("%d %.2f\n", years, amount);
+    printf("%.2f\n", amount);
 
     return 0;
 }
