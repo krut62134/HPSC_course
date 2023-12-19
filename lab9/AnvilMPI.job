@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#SBATCH -o %j.o
+#SBATCH -e %j.e
+#SBATCH -p shared
+#SBATCH -N 2
+#SBATCH -n 256
+#SBATCH -t 2
+#SBATCH -A SEE230009
+#SBATCH --mail-user=kpatel29@umassd.edu
+#SBATCH --mail-type=all
+
+#---------------------------------------------------------------------
+echo "Hello"
+mpirun -np 256 ./optimizer 100000000
+
