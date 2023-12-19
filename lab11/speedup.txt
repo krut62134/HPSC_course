@@ -1,0 +1,10 @@
+time for 1 thread = 6.972
+time for 2 threads = 4.455
+time for 4 threads = 4.139
+time for 8 threads = 4.313
+
+
+Speedup for 2 threads = 1.565 
+Speedup for 4 threads = 1.684
+Speedup for 8 threads = 1.617
+
