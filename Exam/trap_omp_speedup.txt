@@ -1,0 +1,7 @@
+The speedup for k=2 is 1.4186 
+The speedup for k=5 is 1.7100
+The speedup for k=10 is 1.8224
+The speedup for k=100 is 1.9304
+
+It could be that using reduction on the integral inside the for loop could give better speedups. Also, for more then 2 threads, the sample size could make a huge difference in the speedup values. That definetly is the case for k = 10 and 100.
+
